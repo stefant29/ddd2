@@ -8,23 +8,23 @@ import { of, Subject, from } from 'rxjs';
 
 import { IA } from 'app/entities/a/a.model';
 import { AService } from 'app/entities/a/service/a.service';
-import { BService } from '../service/b.service';
-import { IB } from '../b.model';
-import { BFormService } from './b-form.service';
+import { CService } from '../service/c.service';
+import { IC } from '../c.model';
+import { CFormService } from './c-form.service';
 
-import { BUpdateComponent } from './b-update.component';
+import { CUpdateComponent } from './c-update.component';
 
-describe('B Management Update Component', () => {
-  let comp: BUpdateComponent;
-  let fixture: ComponentFixture<BUpdateComponent>;
+describe('C Management Update Component', () => {
+  let comp: CUpdateComponent;
+  let fixture: ComponentFixture<CUpdateComponent>;
   let activatedRoute: ActivatedRoute;
-  let bFormService: BFormService;
-  let bService: BService;
+  let cFormService: CFormService;
+  let cService: CService;
   let aService: AService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([]), BUpdateComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([]), CUpdateComponent],
       providers: [
         FormBuilder,
         {
@@ -35,13 +35,13 @@ describe('B Management Update Component', () => {
         },
       ],
     })
-      .overrideTemplate(BUpdateComponent, '')
+      .overrideTemplate(CUpdateComponent, '')
       .compileComponents();
 
-    fixture = TestBed.createComponent(BUpdateComponent);
+    fixture = TestBed.createComponent(CUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
-    bFormService = TestBed.inject(BFormService);
-    bService = TestBed.inject(BService);
+    cFormService = TestBed.inject(CFormService);
+    cService = TestBed.inject(CService);
     aService = TestBed.inject(AService);
 
     comp = fixture.componentInstance;
@@ -49,17 +49,17 @@ describe('B Management Update Component', () => {
 
   describe('ngOnInit', () => {
     it('Should call A query and add missing value', () => {
-      const b: IB = { id: 'CBA' };
-      const a: IA = { id: 'be91b80b-60af-47d1-a262-166079b613e6' };
-      b.a = a;
+      const c: IC = { id: 'CBA' };
+      const a: IA = { id: '9d2c14c4-a4d8-4487-9630-b097881049b5' };
+      c.a = a;
 
-      const aCollection: IA[] = [{ id: '90975474-fd90-430c-be2e-c367bc81ede7' }];
+      const aCollection: IA[] = [{ id: '5b323e83-d9af-4069-8178-88925e3fa030' }];
       jest.spyOn(aService, 'query').mockReturnValue(of(new HttpResponse({ body: aCollection })));
       const additionalAS = [a];
       const expectedCollection: IA[] = [...additionalAS, ...aCollection];
       jest.spyOn(aService, 'addAToCollectionIfMissing').mockReturnValue(expectedCollection);
 
-      activatedRoute.data = of({ b });
+      activatedRoute.data = of({ c });
       comp.ngOnInit();
 
       expect(aService.query).toHaveBeenCalled();
@@ -68,72 +68,72 @@ describe('B Management Update Component', () => {
     });
 
     it('Should update editForm', () => {
-      const b: IB = { id: 'CBA' };
-      const a: IA = { id: '0befcb47-4f4a-493e-bc7a-4343f3c9bd15' };
-      b.a = a;
+      const c: IC = { id: 'CBA' };
+      const a: IA = { id: '7f87b35c-ca1d-4702-97ba-1368a070cbd8' };
+      c.a = a;
 
-      activatedRoute.data = of({ b });
+      activatedRoute.data = of({ c });
       comp.ngOnInit();
 
       expect(comp.aSSharedCollection).toContain(a);
-      expect(comp.b).toEqual(b);
+      expect(comp.c).toEqual(c);
     });
   });
 
   describe('save', () => {
     it('Should call update service on save for existing entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IB>>();
-      const b = { id: 'ABC' };
-      jest.spyOn(bFormService, 'getB').mockReturnValue(b);
-      jest.spyOn(bService, 'update').mockReturnValue(saveSubject);
+      const saveSubject = new Subject<HttpResponse<IC>>();
+      const c = { id: 'ABC' };
+      jest.spyOn(cFormService, 'getC').mockReturnValue(c);
+      jest.spyOn(cService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ b });
+      activatedRoute.data = of({ c });
       comp.ngOnInit();
 
       // WHEN
       comp.save();
       expect(comp.isSaving).toEqual(true);
-      saveSubject.next(new HttpResponse({ body: b }));
+      saveSubject.next(new HttpResponse({ body: c }));
       saveSubject.complete();
 
       // THEN
-      expect(bFormService.getB).toHaveBeenCalled();
+      expect(cFormService.getC).toHaveBeenCalled();
       expect(comp.previousState).toHaveBeenCalled();
-      expect(bService.update).toHaveBeenCalledWith(expect.objectContaining(b));
+      expect(cService.update).toHaveBeenCalledWith(expect.objectContaining(c));
       expect(comp.isSaving).toEqual(false);
     });
 
     it('Should call create service on save for new entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IB>>();
-      const b = { id: 'ABC' };
-      jest.spyOn(bFormService, 'getB').mockReturnValue({ id: null });
-      jest.spyOn(bService, 'create').mockReturnValue(saveSubject);
+      const saveSubject = new Subject<HttpResponse<IC>>();
+      const c = { id: 'ABC' };
+      jest.spyOn(cFormService, 'getC').mockReturnValue({ id: null });
+      jest.spyOn(cService, 'create').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ b: null });
+      activatedRoute.data = of({ c: null });
       comp.ngOnInit();
 
       // WHEN
       comp.save();
       expect(comp.isSaving).toEqual(true);
-      saveSubject.next(new HttpResponse({ body: b }));
+      saveSubject.next(new HttpResponse({ body: c }));
       saveSubject.complete();
 
       // THEN
-      expect(bFormService.getB).toHaveBeenCalled();
-      expect(bService.create).toHaveBeenCalled();
+      expect(cFormService.getC).toHaveBeenCalled();
+      expect(cService.create).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).toHaveBeenCalled();
     });
 
     it('Should set isSaving to false on error', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IB>>();
-      const b = { id: 'ABC' };
-      jest.spyOn(bService, 'update').mockReturnValue(saveSubject);
+      const saveSubject = new Subject<HttpResponse<IC>>();
+      const c = { id: 'ABC' };
+      jest.spyOn(cService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ b });
+      activatedRoute.data = of({ c });
       comp.ngOnInit();
 
       // WHEN
@@ -142,7 +142,7 @@ describe('B Management Update Component', () => {
       saveSubject.error('This is an error!');
 
       // THEN
-      expect(bService.update).toHaveBeenCalled();
+      expect(cService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
     });

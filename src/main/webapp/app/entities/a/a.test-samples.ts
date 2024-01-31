@@ -1,17 +1,16 @@
 import { IA, NewA } from './a.model';
 
 export const sampleWithRequiredData: IA = {
-  id: '9d2c14c4-a4d8-4487-9630-b097881049b5',
+  id: '831e5c7c-ab89-4b4f-b0ab-467d14d49b97',
 };
 
 export const sampleWithPartialData: IA = {
-  id: 'b323e83d-9af0-4691-9788-8925e3fa0301',
-  name: 'shame gah pluralize',
+  id: '2846ae84-4f5d-42af-93db-a6a9e3e9678e',
 };
 
 export const sampleWithFullData: IA = {
-  id: '070cbd87-831e-45c7-8cab-89b4f0ab467d',
-  name: 'step-father',
+  id: 'a89f974d-cb9b-4e3a-9665-d7e45c937216',
+  name: 'pare fuzzy strap',
 };
 
 export const sampleWithNewData: NewA = {
