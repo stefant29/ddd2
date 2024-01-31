@@ -8,6 +8,15 @@ entity B {
     name String
 }
 
-relationship OneToMany {
-	A to B
+relationship ManyToOne {
+	B to A
+}
+
+entity C {
+	id String
+    name String
+}
+
+relationship ManyToOne {
+	C{a(id)} to A
 }
