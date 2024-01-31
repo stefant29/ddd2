@@ -17,6 +17,13 @@
   "name": "A",
   "relationships": [
     {
+      "otherEntityField": "name",
+      "otherEntityName": "e",
+      "relationshipName": "e",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityName": "b",
       "otherEntityRelationshipName": "a",
       "relationshipName": "b",

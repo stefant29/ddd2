@@ -20,3 +20,22 @@ entity C {
 relationship ManyToOne {
 	C{a(id)} to A
 }
+
+entity D {
+	id String
+    name String
+}
+
+relationship ManyToOne {
+	D{a(name)} to A
+}
+
+
+entity E {
+	id String
+    name String
+}
+
+relationship OneToMany {
+	E to A{e(name)}
+}

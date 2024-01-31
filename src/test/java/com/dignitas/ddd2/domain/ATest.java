@@ -2,6 +2,7 @@ package com.dignitas.ddd2.domain;
 
 import static com.dignitas.ddd2.domain.ATestSamples.*;
 import static com.dignitas.ddd2.domain.BTestSamples.*;
+import static com.dignitas.ddd2.domain.ETestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.dignitas.ddd2.web.rest.TestUtil;
@@ -23,6 +24,18 @@ class ATest {
 
         a2 = getASample2();
         assertThat(a1).isNotEqualTo(a2);
+    }
+
+    @Test
+    void eTest() throws Exception {
+        A a = getARandomSampleGenerator();
+        E eBack = getERandomSampleGenerator();
+
+        a.setE(eBack);
+        assertThat(a.getE()).isEqualTo(eBack);
+
+        a.e(null);
+        assertThat(a.getE()).isNull();
     }
 
     @Test

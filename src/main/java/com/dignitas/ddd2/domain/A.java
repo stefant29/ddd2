@@ -27,6 +27,10 @@ public class A implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "as" }, allowSetters = true)
+    private E e;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "a")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "a" }, allowSetters = true)
@@ -58,6 +62,19 @@ public class A implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public E getE() {
+        return this.e;
+    }
+
+    public void setE(E e) {
+        this.e = e;
+    }
+
+    public A e(E e) {
+        this.setE(e);
+        return this;
     }
 
     public Set<B> getBs() {

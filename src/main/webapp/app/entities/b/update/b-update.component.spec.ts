@@ -50,10 +50,10 @@ describe('B Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call A query and add missing value', () => {
       const b: IB = { id: 'CBA' };
-      const a: IA = { id: 'be91b80b-60af-47d1-a262-166079b613e6' };
+      const a: IA = { id: 'd7c1a561-ee80-4f11-ab3f-9572e9d330e5' };
       b.a = a;
 
-      const aCollection: IA[] = [{ id: '90975474-fd90-430c-be2e-c367bc81ede7' }];
+      const aCollection: IA[] = [{ id: 'ec879680-bf90-4363-8f37-e136a7798da0' }];
       jest.spyOn(aService, 'query').mockReturnValue(of(new HttpResponse({ body: aCollection })));
       const additionalAS = [a];
       const expectedCollection: IA[] = [...additionalAS, ...aCollection];
@@ -69,7 +69,7 @@ describe('B Management Update Component', () => {
 
     it('Should update editForm', () => {
       const b: IB = { id: 'CBA' };
-      const a: IA = { id: '0befcb47-4f4a-493e-bc7a-4343f3c9bd15' };
+      const a: IA = { id: '3c993acc-fb4c-445a-a058-ac01ebfe3d1f' };
       b.a = a;
 
       activatedRoute.data = of({ b });
