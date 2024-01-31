@@ -1,0 +1,13 @@
+entity A {
+	id String
+    name String
+}
+
+entity B {
+	id String
+    name String
+}
+
+relationship OneToMany {
+	A to B
+}
