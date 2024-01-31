@@ -26,7 +26,7 @@ public class C implements Serializable {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "bs" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "e", "bs" }, allowSetters = true)
     private A a;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

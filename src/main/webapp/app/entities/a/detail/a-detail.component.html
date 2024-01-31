@@ -19,6 +19,14 @@
           <dd>
             <span>{{ a.name }}</span>
           </dd>
+          <dt><span jhiTranslate="ddd2App.a.e">E</span></dt>
+          <dd>
+            @if (a.e) {
+              <div>
+                <a [routerLink]="['/e', a.e.id, 'view']">{{ a.e.name }}</a>
+              </div>
+            }
+          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

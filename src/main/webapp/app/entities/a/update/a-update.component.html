@@ -17,6 +17,16 @@
           <label class="form-label" jhiTranslate="ddd2App.a.name" for="field_name">Name</label>
           <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
         </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="ddd2App.a.e" for="field_e">E</label>
+          <select class="form-control" id="field_e" data-cy="e" name="e" formControlName="e" [compareWith]="compareE">
+            <option [ngValue]="null"></option>
+            @for (eOption of eSSharedCollection; track $index) {
+              <option [ngValue]="eOption">{{ eOption.name }}</option>
+            }
+          </select>
+        </div>
       </div>
 
       <div>

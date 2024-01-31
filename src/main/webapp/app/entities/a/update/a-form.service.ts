@@ -19,6 +19,7 @@ type AFormDefaults = Pick<NewA, 'id'>;
 type AFormGroupContent = {
   id: FormControl<IA['id'] | NewA['id']>;
   name: FormControl<IA['name']>;
+  e: FormControl<IA['e']>;
 };
 
 export type AFormGroup = FormGroup<AFormGroupContent>;
@@ -39,6 +40,7 @@ export class AFormService {
         },
       ),
       name: new FormControl(aRawValue.name),
+      e: new FormControl(aRawValue.e),
     });
   }
 

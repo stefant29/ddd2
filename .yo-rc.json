@@ -15,7 +15,7 @@
     "enableHibernateCache": true,
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
-    "entities": ["C", "A", "B"],
+    "entities": ["D", "C", "A", "E", "B"],
     "gitCompany": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "8.1.0",

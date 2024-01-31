@@ -130,12 +130,17 @@ public class AResource {
     /**
      * {@code GET  /as} : get all the aS.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of aS in body.
      */
     @GetMapping("")
-    public List<A> getAllAS() {
+    public List<A> getAllAS(@RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload) {
         log.debug("REST request to get all AS");
-        return aRepository.findAll();
+        if (eagerload) {
+            return aRepository.findAllWithEagerRelationships();
+        } else {
+            return aRepository.findAll();
+        }
     }
 
     /**
@@ -147,7 +152,7 @@ public class AResource {
     @GetMapping("/{id}")
     public ResponseEntity<A> getA(@PathVariable("id") String id) {
         log.debug("REST request to get A : {}", id);
-        Optional<A> a = aRepository.findById(id);
+        Optional<A> a = aRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(a);
     }
 

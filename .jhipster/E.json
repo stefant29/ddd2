@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20240131163954"
+  },
+  "applications": "*",
+  "entityTableName": "e",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "name": "E",
+  "relationships": [
+    {
+      "otherEntityName": "a",
+      "otherEntityRelationshipName": "e",
+      "relationshipName": "a",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}
