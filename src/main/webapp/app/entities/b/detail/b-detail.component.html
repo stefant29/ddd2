@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (b) {
+      <div>
+        <h2 data-cy="bDetailsHeading"><span jhiTranslate="ddd2App.b.detail.title">B</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="ddd2App.b.id">Id</span></dt>
+          <dd>
+            <span>{{ b.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="ddd2App.b.name">Name</span></dt>
+          <dd>
+            <span>{{ b.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="ddd2App.b.a">A</span></dt>
+          <dd>
+            @if (b.a) {
+              <div>
+                <a [routerLink]="['/a', b.a.id, 'view']">{{ b.a.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/b', b.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
