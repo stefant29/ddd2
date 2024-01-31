@@ -20,7 +20,7 @@
       "otherEntityName": "b",
       "otherEntityRelationshipName": "a",
       "relationshipName": "b",
-      "relationshipSide": "left",
+      "relationshipSide": "right",
       "relationshipType": "one-to-many"
     }
   ],

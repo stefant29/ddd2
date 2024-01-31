@@ -1,9 +1,9 @@
 {
   "annotations": {
-    "changelogDate": "20240131163954"
+    "changelogDate": "20240131163854"
   },
   "applications": "*",
-  "entityTableName": "b",
+  "entityTableName": "c",
   "fields": [
     {
       "fieldName": "id",
@@ -14,11 +14,11 @@
       "fieldType": "String"
     }
   ],
-  "name": "B",
+  "name": "C",
   "relationships": [
     {
+      "otherEntityField": "id",
       "otherEntityName": "a",
-      "otherEntityRelationshipName": "b",
       "relationshipName": "a",
       "relationshipSide": "left",
       "relationshipType": "many-to-one"
